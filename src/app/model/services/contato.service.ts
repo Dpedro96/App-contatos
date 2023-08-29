@@ -7,9 +7,9 @@ import Contato from '../entities/Contato';
 export class ContatoService {
   listaContatos : Contato[] = [];
   constructor() {   
-    let c1: Contato = new Contato("Pedro Alvarez Cabral", 998307115);
-    let c2: Contato = new Contato("Ezequiel Lucios", 998308868);
-    let c3: Contato = new Contato("Bruno Caboclo", 998544545);
+    let c1: Contato = new Contato("Pedro Alvarez Cabral", 998307115, "pedro@gmial.com");
+    let c2: Contato = new Contato("Ezequiel Lucios", 998308868, "pedro@gmial.com");
+    let c3: Contato = new Contato("Bruno Caboclo", 998544545, "pedro@gmial.com");
     this.listaContatos.push(c1);
     this.listaContatos.push(c2);
     this.listaContatos.push(c3);
@@ -25,5 +25,11 @@ export class ContatoService {
 
   obterPorIndice(indice: number){
     return this.listaContatos[indice];
+  }
+  salvar(indice: number, contato:Contato){
+    this.listaContatos[indice] = contato;
+  }
+  excluir(indice: number){
+    this.listaContatos.splice(indice, 1);
   }
 }

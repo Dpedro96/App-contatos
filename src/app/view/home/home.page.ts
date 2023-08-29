@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import Contato from 'src/app/model/entities/Contato';
-import { ContatoService } from 'src/app/model/services/contato.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +11,23 @@ import { ContatoService } from 'src/app/model/services/contato.service';
 })
 export class HomePage {
   listaContatos : Contato[] = [];
-  constructor( private router: Router, private contatoService : ContatoService) {
-    this.listaContatos = this.contatoService.obterTodos();
+  constructor( private router: Router, private  firebase : FirebaseService) {
+    this.firebase.read().subscribe(res =>
+      {this.listaContatos = res.map(contato =>
+        {return{
+          id: contato.payload.doc.id,
+          ... contato.payload.doc.data() as any
+        }as Contato
+      })}
+    );
   }
 
 
   irParaCadastrar(){
     this.router.navigate(["/cadastrar"])
+  }
+
+  editar(contato : Contato){
+    this.router.navigateByUrl("/detalhar", {state: {contato:contato}});
   }
 }

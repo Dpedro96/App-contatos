@@ -7,6 +7,16 @@
 </ion-header>
 
 <ion-content >
+<ion-list *ngFor="let contato of listaContatos" >
+  <ion-item (click)="editar(contato)">
+    <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+    <ion-label>{{contato.nome}}</ion-label>
+   <!-- <ion-label>{{contato.telefone}}</ion-label>-->
+  </ion-item>
+</ion-list>
+
+  <!--
+
   <ion-accordion-group *ngFor="let contato of listaContatos">
     <ion-accordion value="first">
       <ion-item slot="header" color="light">
@@ -19,14 +29,6 @@
       </ion-item>
     </ion-accordion>
   </ion-accordion-group>
-  <!--
-  <ion-list *ngFor="let contato of listaContatos">
-    <ion-item>
-      <ion-icon name="person-circle-outline" slot="start"></ion-icon>
-      <ion-label>{{contato.nome}}</ion-label>
-      <ion-label>{{contato.telefone}}</ion-label>
-    </ion-item>
-  </ion-list>
 -->
   <ion-fab vertical="bottom" horizontal="end">
     <ion-fab-button (click)="irParaCadastrar()">

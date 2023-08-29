@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Detalhar
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-list>
+    <ion-item>
+      <ion-toggle (ionChange)="habilitar()">Habilitar Edição</ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-input label ="Nome"  [(ngModel)]="nome" disabled="{{edicao}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label ="Telefone"type="number"  [(ngModel)]="telefone" disabled="{{edicao}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label ="Email"  [(ngModel)]="email" disabled="{{edicao}}"></ion-input>
+    </ion-item>
+    <ion-button id="preset-alert" class="btnDetalhes" shape="round" (click)="salvar()">Salvar</ion-button>
+    <ion-button id="preset-alert" class="btnDetalhes" shape="round" (click)="showConfirm()" color="danger">Excluir</ion-button>
+  </ion-list>
+</ion-content>
